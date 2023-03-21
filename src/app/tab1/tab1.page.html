@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      List de Courses
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-item> 
+    <ion-label position="floating">nouvel article</ion-label>
+    <ion-input [(ngModel)]="nomDeLArticle"></ion-input>
+    <ion-button slot="end" 
+                size="default" 
+                color="tertiary"
+                (click)="ajouter()">
+      <ion-icon name="add"> </ion-icon>
+    </ion-button>
+  </ion-item>
+
+
+  <ion-item *ngIf="articles.length">
+    <ion-button slot="end" 
+                size="default" 
+                color="danger"
+                (click)="confirmer()">
+      <ion-icon name="trash-bin"> </ion-icon>
+    </ion-button>
+</ion-item>
+
+
+  <ion-list>
+    <ion-list-header>
+      Mes Articles
+    </ion-list-header>
+    <ion-item *ngFor="let article of articles" (click)="afficherAction(article)"> 
+      {{ article.nom }}
+        <ion-icon *ngIf="article.estCoche"
+                  slot="end"
+                  name="checkmark-circle"
+                  color="success"> </ion-icon>
+      </ion-item>
+  </ion-list>
+</ion-content>
